@@ -1,9 +1,13 @@
 apiVersion : apps/v1beta1
 kind: Deployment
 metadata:
-  name: rahulltelkarboard 
+  name: rahul
+  namespace: default
 spec:
   replicas: 1
+  selector:
+     matchLabels: 
+             app: rahulltelkarboard
   template:
     metadata:
       labels:
@@ -14,3 +18,4 @@ spec:
           image: rahulimageregistry.azurecr.io/rahulltelkarboard
           ports:
           - containerPort: 8080
+
