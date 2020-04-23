@@ -1,10 +1,20 @@
-apiVersion: v1
-kind: Service
+apiVersion : apps/v1beta1
+kind: Deployment
 metadata:
-    name: rahulltelkarboard
+  name: rahul
+  namespace: default
 spec:
-    type: LoadBalancer
-    ports:
-    - port: 8080 
-    selector:
-        app: rahulltelkarboard
+  replicas: 1
+  selector:
+     matchLabels: 
+             app: rahulltelkarboard
+  template:
+    metadata:
+      labels:
+        app: rahulltelkarboard 
+    spec:
+      containers:
+        - name: rahulltelkarboard 
+          image: rahulimageregistry.azurecr.io/rahulltelkarboard
+          ports:
+          - containerPort: 8080
